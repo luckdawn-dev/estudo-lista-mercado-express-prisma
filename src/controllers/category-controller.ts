@@ -1,10 +1,9 @@
 import { type Request, type Response } from 'express';
 import express from 'express';
-import { categoryService } from '../services/category.service.ts';
 import { validate } from '../middleware/validate.ts';
-import { categorySchema, categoryUpdateSchema } from '../schemas/category.schema.ts';
-
+import { categorySchema } from '../schemas/category.schema.ts';
 import { categoryService } from '../services/category.service.ts';
+
 const categoryController = express.Router();
 
 categoryController.get('/', async (req: Request, res: Response) => {
