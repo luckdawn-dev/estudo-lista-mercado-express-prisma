@@ -13,6 +13,8 @@ import { errorHandler } from './src/middleware/errorHandler.ts';
 app.use('/category', categoryController);
 app.use('/shopItem', shopItemController);
 
+app.get('/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
+
 app.use(errorHandler);
 
 app.listen(3000, () => {
