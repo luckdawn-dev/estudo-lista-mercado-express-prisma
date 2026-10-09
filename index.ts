@@ -8,8 +8,12 @@ const app: Express = express();
 app.use(cors());
 app.use(express.json());
 
+import { errorHandler } from './src/middleware/errorHandler.ts';
+
 app.use('/category', categoryController);
 app.use('/shopItem', shopItemController);
+
+app.use(errorHandler);
 
 app.listen(3000, () => {
   console.log('Servidor rodando em http://localhost:3000');
