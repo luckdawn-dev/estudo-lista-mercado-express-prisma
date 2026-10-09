@@ -1,6 +1,8 @@
 import { type Request, type Response } from 'express';
 import express from 'express';
 import { listaMercadoPrisma } from '../db.ts';
+import { validate } from '../middleware/validate.ts';
+import { categorySchema, categoryUpdateSchema } from '../schemas/category.schema.ts';
 
 const categoryController = express.Router();
 
@@ -25,7 +27,7 @@ categoryController.get('/:id', async (req: Request, res: Response) => {
     }
 });
 
-categoryController.post('/', async (req: Request, res: Response) => {
+categoryController.post('/', validate(categorySchema), async (req: Request, res: Response) => {
     try {
         res.send(await listaMercadoPrisma.category.create({ data: req.body }));
     } catch (error) {
