@@ -1,11 +1,11 @@
 import express from 'express';
-import { listaMercadoPrisma } from '../db.ts';
+import { shopItemService } from '../services/shop-item.service.ts';
 
 const shopItemController = express.Router();
 
 shopItemController.get('/', async (req, res) => {
     try {
-        const itemList = await listaMercadoPrisma.shopItem.findMany();
+        const itemList = await shopItemService.findMany();
 
         res.send(itemList);
     } catch (error) {
@@ -15,11 +15,7 @@ shopItemController.get('/', async (req, res) => {
 
 shopItemController.get('/:categoryId', async (req, res) => {
     try {
-        const shopItem = await listaMercadoPrisma.shopItem.findMany({
-            where: {
-                categoryId: req.params.categoryId
-            }
-        });
+        const shopItem = await shopItemService.findByCategory(req.params.categoryId);
 
         res.send(shopItem);
     } catch (error) {
@@ -29,7 +25,7 @@ shopItemController.get('/:categoryId', async (req, res) => {
 
 shopItemController.post('/', async (req, res) => {
     try {
-        const shopItem = await listaMercadoPrisma.shopItem.create({data: req.body});
+        const shopItem = await shopItemService.create(req.body);
 
         res.send(shopItem);
     } catch (error) {
@@ -39,14 +35,9 @@ shopItemController.post('/', async (req, res) => {
 
 shopItemController.put('/:id', async (req, res) => {
     try {
-        const shopItem = await listaMercadoPrisma.shopItem.update({
-            where: {
-                id: req.params.id
-            },
-            data: {
-                ...req.body,
-                id: req.params.id
-            }
+        const shopItem = await shopItemService.update(req.params.id, {
+            ...req.body,
+            id: req.params.id
         });
 
 
@@ -58,11 +49,7 @@ shopItemController.put('/:id', async (req, res) => {
 
 shopItemController.delete('/:id', async (req, res) => {
     try {
-        await listaMercadoPrisma.shopItem.delete({
-            where: {
-                id: req.params.id
-            }
-        });
+        await shopItemService.delete(req.params.id);
 
         res.sendStatus(200);
     } catch (error) {
