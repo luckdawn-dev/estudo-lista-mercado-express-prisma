@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Cama.ra%2321
+      POSTGRES_DB: lista_mercado
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:Cama.ra%2321@db:5432/lista_mercado?schema=public
+    depends_on:
+      - db
+volumes:
+  pgdata:
