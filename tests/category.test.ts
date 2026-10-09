@@ -1,5 +1,5 @@
 import request from "supertest";
-import { app } from "../index";
+import { app } from "../index.js";
 
 describe("Category Controller", () => {
   it("GET /health should return 200", async () => {
