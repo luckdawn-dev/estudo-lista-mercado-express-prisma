@@ -22,7 +22,7 @@ app.get('/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date()
 
 app.use(errorHandler);
 
-export { app };
+export default { app };
 
 if (!process.env.VERCEL) {
   app.listen(3000, () => {
