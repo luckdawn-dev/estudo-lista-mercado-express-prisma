@@ -8,8 +8,8 @@
   "main": "index.ts",
   "scripts": {
     "test": "node --test tests/category.test.ts 2>/dev/null || npx jest --runInBand --testTimeout=10000 || echo 'Tests file present; DB connection needed for full suite execution'",
-    "postinstall": "prisma generate || exit 0",
-    "build": "prisma generate && echo 'Build complete'",
+    "postinstall": "prisma generate",
+    "build": "prisma generate && tsc",
     "generate": "prisma generate",
     "migrate": "prisma migrate dev --name init",
     "dev": "nodemon --exec node index.ts"

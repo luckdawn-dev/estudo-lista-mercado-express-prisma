@@ -22,7 +22,7 @@ app.get('/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date()
 
 app.use(errorHandler);
 
-export default { app };
+export default app;
 
 app.listen(3000, () => {
   console.log('Servidor rodando em http://localhost:3000');
