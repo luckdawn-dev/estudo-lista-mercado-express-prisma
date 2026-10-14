@@ -24,6 +24,8 @@ app.use(errorHandler);
 
 export { app };
 
-app.listen(3000, () => {
-  console.log('Servidor rodando em http://localhost:3000');
-});
+if (!process.env.VERCEL) {
+  app.listen(3000, () => {
+    console.log('Servidor rodando em http://localhost:3000');
+  });
+}
