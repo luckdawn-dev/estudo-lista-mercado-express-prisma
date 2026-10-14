@@ -1,13 +1,6 @@
 {
   "installCommand": "npm ci --include=dev",
   "buildCommand": "npm run build",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/api/index" }
-  ],
-  "functions": {
-    "api/index.ts": {
-      "maxDuration": 30
-    }
-  },
+  "outputDirectory": ".",
   "framework": null
 }
