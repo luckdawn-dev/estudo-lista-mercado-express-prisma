@@ -18,6 +18,7 @@ categoryController.get('/:id', async (req: Request, res: Response) => {
     try {
         const category = await categoryService.findById(String(req.params.id));
         res.send(category);
+        
     } catch (error) {
         res.status(500).send(error instanceof Error ? error.message : error);
     }
