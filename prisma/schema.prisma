@@ -20,4 +20,6 @@ model ShopItem {
   quantity   Int      @default(1)
   category   Category @relation(fields: [categoryId], references: [id])
   categoryId String
+
+  @@index([categoryId])
 }
